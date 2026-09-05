@@ -13,7 +13,7 @@ const mangayomiSources = [
     "hasCloudflare": false,
     "sourceCodeUrl": "",
     "apiUrl": "",
-    "version": "1.0.2",
+    "version": "1.0.5",
     "isManga": false,
     "itemType": 1,
     "isFullData": false,
@@ -47,9 +47,9 @@ class DefaultExtension extends MProvider {
     return this.getPreference("anikoto_base_url");
   }
 
-  async request(url,hdr){
+  async request(url, hdr) {
     var res = await this.client.get(url, hdr);
-    if(res.statusCode!=200) return null;
+    if (res.statusCode != 200) return null;
     return res.body;
   }
 
@@ -57,7 +57,7 @@ class DefaultExtension extends MProvider {
     var baseUrl = this.getBaseUrl();
     var hdr = this.getHeaders();
     var url = slug.includes(baseUrl) ? slug : baseUrl + slug;
-    return await this.request(url,hdr)
+    return await this.request(url, hdr)
   }
 
   async requestDoc(slug) {
@@ -244,16 +244,17 @@ class DefaultExtension extends MProvider {
       Referer: megaBuzzUrl,
       Origin: megaBuzzUrl,
       "User-Agent": "MangaYomi",
+      "X-Requested-With": "XMLHttpRequest",
     };
 
-    var res = await this.request(streamEmbedUrl,hdr);
+    var res = await this.request(streamEmbedUrl, hdr);
     var doc = new Document(res);
 
     var data_id = doc.selectFirst("#megaplay-player").attr("data-id");
-    if(data_id.length<1) return null;
+    if (data_id.length < 1) return null;
     var streamApi = `${megaBuzzUrl}stream/getSourcesNew?id=${data_id}&id=${data_id}`;
-    res = await this.request(streamApi,hdr);
-        if(res==null) return null;
+    res = await this.request(streamApi, hdr);
+    if (res == null) return null;
     var streamData = JSON.parse(res);
     var url = streamData.sources.file;
     var subtitles = streamData.tracks;
