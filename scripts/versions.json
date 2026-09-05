@@ -18,15 +18,15 @@
             "langs": "ja",
             "lastUpd": 1761760611.599596
         },
-        "Mangapill": {
-            "name": "Mangapill",
-            "version": "1.0.4",
-            "langs": "en",
-            "lastUpd": 1758079504.835998
-        },
         "Mangapark": {
             "name": "Mangapark",
             "version": "1.0.1",
+            "langs": "en",
+            "lastUpd": 1758079504.835998
+        },
+        "Mangapill": {
+            "name": "Mangapill",
+            "version": "1.0.4",
             "langs": "en",
             "lastUpd": 1758079504.835998
         },
@@ -44,11 +44,11 @@
         }
     },
     "anime": {
-        "AniDB": {
-            "name": "AniDB",
-            "version": "1.0.2",
+        "Anikoto": {
+            "name": "Anikoto",
+            "version": "1.0.5",
             "langs": "all",
-            "lastUpd": 1781089725.310316
+            "lastUpd": 1788586230.692248
         },
         "Animetsu": {
             "name": "Animetsu",
@@ -56,28 +56,22 @@
             "langs": "all",
             "lastUpd": 1780821909.328045
         },
-        "Anikoto": {
-            "name": "Anikoto",
-            "version": "1.0.2",
-            "langs": "all",
-            "lastUpd": 1780745563.603563
-        },
         "Senshi": {
             "name": "Senshi",
             "version": "1.0.1",
             "langs": "all",
             "lastUpd": 1778481909.284884
         },
-        "Animeonsen": {
-            "name": "Animeonsen",
-            "version": "1.0.5",
-            "langs": "en, ja",
-            "lastUpd": 1776836230.987179
-        },
         "Sudatchi": {
             "name": "Sudatchi",
             "version": "2.0.1",
             "langs": "en",
+            "lastUpd": 1776836230.987179
+        },
+        "Animeonsen": {
+            "name": "Animeonsen",
+            "version": "1.0.5",
+            "langs": "en, ja",
             "lastUpd": 1776836230.987179
         },
         "Moviesda": {
