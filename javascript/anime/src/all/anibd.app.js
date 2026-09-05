@@ -11,7 +11,7 @@ const mangayomiSources = [{
     "hasCloudflare": false,
     "sourceCodeUrl": "",
     "apiUrl": "https://eng.animeapps.top/api",
-    "version": "0.0.5",
+    "version": "0.0.8",
     "isManga": false,
     "itemType": 1,
     "isFullData": false,
@@ -64,7 +64,7 @@ class DefaultExtension extends MProvider {
             data.forEach(item => {
                 var name = item["postname"]
                 var imageUrl = item["ani_cover_medium"]
-                var link = ""+item["postid"]
+                var link = "" + item["postid"]
                 list.push({ name, imageUrl, link });
             })
         }
@@ -88,7 +88,42 @@ class DefaultExtension extends MProvider {
     }
 
     async getDetail(url) {
-        throw new Error("getDetail not implemented");
+        var linkSlug = `${this.source.baseUrl}/up/`
+        var aniId = url;
+        if (aniId.includes(linkSlug)) {
+            aniId = url.replace(linkSlug, "");
+        }
+        var slug = `/single.php?postid=${aniId}`
+        var res = await this.request(slug);
+        if (res != null) {
+            var link = linkSlug + aniId;
+            var animeDetails = res.data
+            var name = animeDetails.postname
+            var description = animeDetails.postcontent
+            var genre = animeDetails.postanigenres.split(", ")
+            var status = animeDetails['postseasontype'].includes("Airing") ? 0 : 5;
+
+            var anilist = animeDetails['anilist']
+            var chapters = [];
+            slug = `/api2.php?epid=${anilist}`
+            res = await this.request(slug);
+            if (res != null && res.length > 0) {
+                var isMovie = animeDetails['anitypes'].includes("MOVIE")
+
+                var server_data = res[0]['server_data'];
+                server_data.forEach(item => {
+                    var epName = isMovie ? "Movie" : `Episode ${item['name']}`
+                    chapters.push({
+                        name: epName,
+                        url: item['link'],
+                    });
+                });
+                chapters.reverse();
+            }
+
+
+            return { name, status, description, genre, link, chapters };
+        }
     }
 
     async getVideoList(url) {
