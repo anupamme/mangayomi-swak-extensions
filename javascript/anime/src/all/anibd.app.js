@@ -11,7 +11,7 @@ const mangayomiSources = [{
     "hasCloudflare": false,
     "sourceCodeUrl": "",
     "apiUrl": "https://eng.animeapps.top/api",
-    "version": "0.0.8",
+    "version": "1.0.0",
     "isManga": false,
     "itemType": 1,
     "isFullData": false,
@@ -127,7 +127,38 @@ class DefaultExtension extends MProvider {
     }
 
     async getVideoList(url) {
-        throw new Error("getVideoList not implemented");
+        var streams = [];
+        var hdr = this.getHeaders();
+
+        var slug = `/apilink.php?data=${url}`
+        var res = await this.request(slug);
+        if (res != null && res.length > 0) {
+            res.forEach(item => {
+                var serverName = item['server']
+                var embedLink = item['link']
+                var linkId = embedLink.split("url=")[1];
+                var hasSub = embedLink.includes("playsub.php")
+                var cacheCode = hasSub ? "cachesub" : "cachehd"
+                var streamLink = `https://playeng.animeapps.top/r2/${cacheCode}/${linkId}/index.m3u8`;
+                var subtitles = []
+                if (hasSub) {
+                    subtitles.push({
+                        file: `https://ani10.nukitashi.top/${linkId}/sub.vtt`,
+                        label: "English",
+                    });
+                }
+                streams.push(
+                    {
+                        url: streamLink,
+                        originalUrl: streamLink,
+                        quality: serverName,
+                        headers: hdr,
+                        subtitles,
+                    }
+                )
+            });
+        }
+        return streams;
     }
 
     getFilterList() {
