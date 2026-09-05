@@ -264,6 +264,28 @@
         "notes": ""
     },
     {
+        "name": "Anibd.App",
+        "id": 829457287,
+        "baseUrl": "https://anibd.app",
+        "lang": "all",
+        "typeSource": "single",
+        "iconUrl": "https://www.google.com/s2/favicons?sz=256&domain=https://anibd.app/",
+        "dateFormat": "",
+        "dateFormatLocale": "",
+        "isNsfw": false,
+        "hasCloudflare": false,
+        "sourceCodeUrl": "https://raw.githubusercontent.com/Swakshan/mangayomi-swak-extensions/refs/heads/main/javascript/anime/src/all/anibd.app.js",
+        "apiUrl": "https://eng.animeapps.top/api",
+        "version": "1.0.0",
+        "isManga": false,
+        "itemType": 1,
+        "isFullData": false,
+        "appMinVerReq": "0.5.0",
+        "additionalParams": "",
+        "sourceCodeLanguage": 1,
+        "notes": ""
+    },
+    {
         "name": "Senshi",
         "id": 4254616130,
         "baseUrl": "https://senshi.live",

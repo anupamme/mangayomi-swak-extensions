@@ -44,6 +44,12 @@
         }
     },
     "anime": {
+        "Anibd.App": {
+            "name": "Anibd.App",
+            "version": "1.0.0",
+            "langs": "all",
+            "lastUpd": 1788594218.358992
+        },
         "Anikoto": {
             "name": "Anikoto",
             "version": "1.0.5",
