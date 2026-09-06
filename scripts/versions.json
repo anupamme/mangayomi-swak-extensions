@@ -44,11 +44,17 @@
         }
     },
     "anime": {
+        "KickAssAnime": {
+            "name": "KickAssAnime",
+            "version": "2.1.0",
+            "langs": "en",
+            "lastUpd": 1788667197.722558
+        },
         "Anibd.App": {
             "name": "Anibd.App",
-            "version": "1.0.0",
+            "version": "1.0.3",
             "langs": "all",
-            "lastUpd": 1788594218.358992
+            "lastUpd": 1788667197.722558
         },
         "Anikoto": {
             "name": "Anikoto",

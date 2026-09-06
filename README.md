@@ -22,7 +22,8 @@ This repository contains the available javascript extension catalogues for the M
 
 | Name | Version | Language | Last Updated |
 |------|---------|----------|---------------|
-| Anibd.App | 1.0.0 | all | 2026/09/05 13:13 IST |
+| KickAssAnime | 2.1.0 | en | 2026/09/06 09:29 IST |
+| Anibd.App | 1.0.3 | all | 2026/09/06 09:29 IST |
 | Anikoto | 1.0.5 | all | 2026/09/05 11:00 IST |
 | Animetsu | 1.2.2 | all | 2026/06/07 14:15 IST |
 | Senshi | 1.0.1 | all | 2026/05/11 12:15 IST |
