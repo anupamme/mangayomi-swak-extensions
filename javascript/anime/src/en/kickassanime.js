@@ -14,7 +14,7 @@ const mangayomiSources = [
     "hasCloudflare": false,
     "sourceCodeUrl": "",
     "apiUrl": "",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "isManga": false,
     "itemType": 1,
     "isFullData": false,
@@ -408,12 +408,12 @@ class DefaultExtension extends MProvider {
     try {
       for (var server of servers) {
         var vidStreams = [];
-        var shortName = server.shortName;
+       var serverName = server.name
         var link = server.src;
-        if (shortName == "Vid") {
+        if (link.includes("/cat-player/")) {
+          vidStreams = await this.decodeCatStreaming(link, hdr, serverName);
+        } else {
           vidStreams = await this.decodeVidStreaming(link, hdr);
-        } else if (shortName == "Cat") {
-          vidStreams = await this.decodeCatStreaming(link, hdr);
         }
 
         streams = [...streams, ...vidStreams];
@@ -718,7 +718,7 @@ class DefaultExtension extends MProvider {
     return streams;
   }
 
-  async decodeCatStreaming(url, hdr) {
+  async decodeCatStreaming(url, hdr, serverName) {
     delete hdr["content-type"];
     var body = (await this.client.get(url, hdr)).body;
 
@@ -728,8 +728,8 @@ class DefaultExtension extends MProvider {
     var e = body.indexOf(eKey, s) - 2;
     var data = JSON.parse(body.substring(s, e).replaceAll("&quot;", '"'));
 
-    var streamUrl = "https:" + data.manifest[1];
-    var streams = await this.extractStreams(streamUrl, hdr, "CatStreaming");
+    var streamUrl = data.manifest[1].replace("////","//");
+    var streams = await this.extractStreams(streamUrl, hdr, serverName);
     var subtitles = [];
 
     if (!this.getPreference("kaa_pref_no_sub")) {
