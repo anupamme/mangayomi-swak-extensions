@@ -11,7 +11,7 @@ const mangayomiSources = [{
     "hasCloudflare": false,
     "sourceCodeUrl": "",
     "apiUrl": "https://eng.animeapps.top/api",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "isManga": false,
     "itemType": 1,
     "isFullData": false,
@@ -63,7 +63,7 @@ class DefaultExtension extends MProvider {
 
             data.forEach(item => {
                 var name = item["postname"]
-                var imageUrl = item["ani_cover_medium"]
+                var imageUrl = item["ani_cover_large"]
                 var link = "" + item["postid"]
                 list.push({ name, imageUrl, link });
             })
@@ -102,6 +102,7 @@ class DefaultExtension extends MProvider {
             var description = animeDetails.postcontent
             var genre = animeDetails.postanigenres.split(", ")
             var status = animeDetails['postseasontype'].includes("Airing") ? 0 : 5;
+            var imageUrl = animeDetails.ani_cover_large
 
             var anilist = animeDetails['anilist']
             var chapters = [];
@@ -122,7 +123,7 @@ class DefaultExtension extends MProvider {
             }
 
 
-            return { name, status, description, genre, link, chapters };
+            return { name, imageUrl, status, description, genre, link, chapters };
         }
     }
 
