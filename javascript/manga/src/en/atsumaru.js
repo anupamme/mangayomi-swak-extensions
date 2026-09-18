@@ -12,7 +12,7 @@ const mangayomiSources = [
     "hasCloudflare": false,
     "sourceCodeUrl": "",
     "apiUrl": "",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "isManga": true,
     "itemType": 0,
     "isFullData": false,
@@ -81,6 +81,10 @@ class DefaultExtension extends MProvider {
     }
     return JSON.parse(res.body);
   }
+  
+  getCdnUrl() {
+    return "https://cdn.atsu.moe";
+  }
 
   toImageUrl(path) {
     if (path == null || path == "") return "";
@@ -93,7 +97,7 @@ class DefaultExtension extends MProvider {
     if (path.startsWith("//")) return `https:${path}`;
 
     path = path.replace(/^\//, "").replace(/^static\//, "");
-    return `${this.getBaseUrl()}/static/${path}`.replace(
+    return `${this.getCdnUrl()}/static/${path}`.replace(
       /^https?:?\/\//,
       "https://"
     );
